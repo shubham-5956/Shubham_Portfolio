@@ -2,6 +2,7 @@ import { Router } from "express";
 import { db, contactMessagesTable } from "@workspace/db";
 import { SubmitContactBody } from "@workspace/api-zod";
 import { sendContactEmails } from "../lib/email";
+import { logger } from "../lib/logger";
 
 const contactRouter = Router();
 
@@ -43,7 +44,7 @@ contactRouter.post("/contact", async (req, res) => {
         message: inserted.message,
       });
 
-      req.log.info(
+      logger.info(
         {
           contactId: inserted.id,
           email: inserted.email,
@@ -56,7 +57,7 @@ contactRouter.post("/contact", async (req, res) => {
       // Don't tell the visitor their message failed just
       // because an email service temporarily failed.
 
-      req.log.error(
+      logger.error(
         {
           err: emailError,
           contactId: inserted.id,
@@ -75,7 +76,7 @@ contactRouter.post("/contact", async (req, res) => {
       createdAt: inserted.createdAt.toISOString(),
     });
   } catch (err) {
-    req.log.error(
+    logger.error(
       { err },
       "Failed to save contact message",
     );
