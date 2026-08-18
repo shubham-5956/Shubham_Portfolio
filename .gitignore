@@ -99,3 +99,9 @@ attached_assets/
 
 # npm lockfiles - this project uses pnpm
 **/package-lock.json
+
+# Dependencies
+node_modules/
+
+# Build output
+dist/
