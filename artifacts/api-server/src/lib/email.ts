@@ -4,7 +4,11 @@ const apiKey = process.env.RESEND_API_KEY;
 
 if (!apiKey) {
   throw new Error("RESEND_API_KEY is not configured");
+
 }
+
+const fromEmail =
+  process.env.FROM_EMAIL || "Portfolio <onboarding@resend.dev>";
 
 export const resend = new Resend(apiKey);
 
@@ -21,7 +25,7 @@ export async function sendContactEmails({
 }) {
   // Email to you
   const adminEmail = await resend.emails.send({
-    from: "Portfolio <onboarding@resend.dev>",
+    from: fromEmail,
     to: ["shubhamkumaragarwal2@gmail.com"],
     subject: `New Contact Form Submission${subject ? ` - ${subject}` : ""}`,
     html: `
@@ -78,7 +82,7 @@ export async function sendContactEmails({
 
   // Confirmation email to visitor
   const visitorEmail = await resend.emails.send({
-    from: "Shubham Kumar Agarwal <onboarding@resend.dev>",
+    from: fromEmail,
     to: [email],
     subject: "Thanks for reaching out!",
     html: `
