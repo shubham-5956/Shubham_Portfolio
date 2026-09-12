@@ -1,8 +1,8 @@
 import { Router } from "express";
 import { db, contactMessagesTable } from "@workspace/db";
 import { SubmitContactBody } from "@workspace/api-zod";
-import { sendContactEmails } from "../lib/email";
-import { logger } from "../lib/logger";
+import { sendContactEmails } from "../lib/email.js";
+import { logger } from "../lib/logger.js";
 
 const contactRouter = Router();
 
