@@ -31,11 +31,8 @@ export async function sendContactEmails({
     html: `
       <div style="font-family: Arial, sans-serif; line-height: 1.6;">
         <h2>New Contact Form Submission</h2>
-
         <p>You received a new message through your portfolio.</p>
-
         <hr />
-
         <p>
           <strong>Name:</strong> ${escapeHtml(name)}
         </p>
