@@ -47,7 +47,7 @@ export default function ContactSection() {
   const onSubmit = async (values: ContactFormValues) => {
     try {
       const response = await fetch(
-        "http://localhost:3001/api/contact",
+      `${import.meta.env.VITE_API_URL}/api/contact`,
         {
           method: "POST",
 
